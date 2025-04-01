@@ -5,7 +5,7 @@ import 'config.dart';
 import 'forms/form_widget.dart';
 
 class ExampleCustom extends StatefulWidget {
-  const ExampleCustom({Key? key}) : super(key: key);
+  const ExampleCustom({super.key});
 
   @override
   State<StatefulWidget> createState() {
@@ -121,8 +121,8 @@ class _ExampleCustomState extends State<ExampleCustom> {
 
   Widget buildSwiper() {
     return Swiper(
-      onTap: (index) {
-        Navigator.of(context).push(MaterialPageRoute<Object>(
+      onTap: (index) async {
+        await Navigator.of(context).push(MaterialPageRoute<Object>(
           builder: (context) {
             return Scaffold(
               appBar: AppBar(
@@ -168,7 +168,7 @@ class _ExampleCustomState extends State<ExampleCustom> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Container(
+        ColoredBox(
           color: Colors.black87,
           child: SizedBox(
             height: 300.0,
@@ -183,14 +183,14 @@ class _ExampleCustomState extends State<ExampleCustom> {
               Row(
                 children: <Widget>[
                   ElevatedButton(
-                    onPressed: () {
-                      _controller.previous(animation: true);
+                    onPressed: () async {
+                      await _controller.previous(animation: true);
                     },
                     child: const Text('Prev'),
                   ),
                   ElevatedButton(
-                    onPressed: () {
-                      _controller.next(animation: true);
+                    onPressed: () async {
+                      await _controller.next(animation: true);
                     },
                     child: const Text('Next'),
                   ),

@@ -2,15 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class FormWidget extends StatelessWidget {
+
+  const FormWidget({
+    super.key,
+    required this.label,
+    required this.child,
+  });
   final String label;
 
   final Widget child;
-
-  const FormWidget({
-    Key? key,
-    required this.label,
-    required this.child,
-  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,18 +32,18 @@ class FormWidget extends StatelessWidget {
 }
 
 class FormSelect<T> extends StatefulWidget {
-  final String placeholder;
-  final ValueChanged<T> valueChanged;
-  final List<T> values;
-  final T value;
 
   const FormSelect({
-    Key? key,
+    super.key,
     required this.placeholder,
     required this.valueChanged,
     required this.value,
     required this.values,
-  }) : super(key: key);
+  });
+  final String placeholder;
+  final ValueChanged<T> valueChanged;
+  final List<T> values;
+  final T value;
 
   @override
   State<StatefulWidget> createState() {
@@ -76,7 +76,7 @@ class _FormSelectState<T> extends State<FormSelect<T>> {
           _selectedIndex < 0 ? placeholder : values[_selectedIndex].toString()),
       onTap: () {
         _selectedIndex = 0;
-        showBottomSheet<dynamic>(
+        showBottomSheet(
             context: context,
             builder: (context) {
               return SizedBox(
@@ -122,20 +122,20 @@ class _FormSelectState<T> extends State<FormSelect<T>> {
 }
 
 class NumberPad extends StatelessWidget {
-  final num number;
-  final num step;
-  final num max;
-  final num min;
-  final ValueChanged<num> onChangeValue;
 
   const NumberPad({
-    Key? key,
+    super.key,
     required this.number,
     required this.step,
     required this.onChangeValue,
     required this.max,
     required this.min,
-  }) : super(key: key);
+  });
+  final num number;
+  final num step;
+  final num max;
+  final num min;
+  final ValueChanged<num> onChangeValue;
 
   void onAdd() {
     onChangeValue(number + step > max ? max : number + step);

@@ -2,7 +2,7 @@ import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 
 class ExampleSwiperInScrollView extends StatefulWidget {
-  const ExampleSwiperInScrollView({Key? key}) : super(key: key);
+  const ExampleSwiperInScrollView({super.key});
 
   @override
   State<StatefulWidget> createState() {
@@ -12,13 +12,13 @@ class ExampleSwiperInScrollView extends StatefulWidget {
 
 class _ExampleState extends State<ExampleSwiperInScrollView>
     with TickerProviderStateMixin {
+
+  _ExampleState();
   late AnimationController controller;
   late Animation<double> _animation10;
   late Animation<double> _animation11;
   late Animation<double> _animation12;
   late Animation<double> _animation13;
-
-  _ExampleState();
 
   @override
   void dispose() {
@@ -116,7 +116,7 @@ class _ExampleState extends State<ExampleSwiperInScrollView>
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return ColoredBox(
       color: Theme.of(context).primaryColorLight,
       child: CustomScrollView(
         slivers: <Widget>[
@@ -131,7 +131,7 @@ class _ExampleState extends State<ExampleSwiperInScrollView>
                     scale: 0.8,
                     fade: 0.8,
                     itemBuilder: (c, i) {
-                      return Container(
+                      return ColoredBox(
                         color: Colors.grey,
                         child: Text('$i'),
                       );
@@ -146,7 +146,7 @@ class _ExampleState extends State<ExampleSwiperInScrollView>
                       scale: 0.8,
                       fade: 0.8,
                       itemBuilder: (c, i) {
-                        return Container(
+                        return ColoredBox(
                           color: Colors.grey,
                           child: Text('$i'),
                         );
@@ -161,7 +161,7 @@ class _ExampleState extends State<ExampleSwiperInScrollView>
                       scale: 0.8,
                       fade: 0.8,
                       itemBuilder: (c, i) {
-                        return Container(
+                        return ColoredBox(
                           color: Colors.grey,
                           child: Text('$i'),
                         );
@@ -177,7 +177,7 @@ class _ExampleState extends State<ExampleSwiperInScrollView>
                       scale: 0.8,
                       fade: 0.8,
                       itemBuilder: (c, i) {
-                        return Container(
+                        return ColoredBox(
                           color: Colors.grey,
                           child: Text('$i'),
                         );
@@ -216,7 +216,7 @@ class _ExampleState extends State<ExampleSwiperInScrollView>
                                   alignment: FractionalOffset.topLeft,
                                   decoration: BoxDecoration(
                                     border: Border.all(
-                                      color: Colors.lightBlue.withOpacity(0.5),
+                                      color: Colors.lightBlue.withValues(alpha: 0.5),
                                       width: 100.0,
                                     ),
                                     shape: BoxShape.circle,
@@ -257,7 +257,7 @@ class _ExampleState extends State<ExampleSwiperInScrollView>
                       viewportFraction: 0.8,
                       scale: 0.8,
                       itemBuilder: (c, i) {
-                        return Container(
+                        return ColoredBox(
                           color: Colors.grey,
                           child: Text('$i'),
                         );

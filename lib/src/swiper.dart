@@ -58,7 +58,7 @@ class Swiper extends StatefulWidget {
     this.pagination,
     this.plugins,
     this.physics,
-    Key? key,
+    super.key,
     this.controller,
     this.customLayoutOption,
 
@@ -84,8 +84,7 @@ class Swiper extends StatefulWidget {
                             indicatorLayout == PageIndicatorLayout.COLOR ||
                             indicatorLayout == PageIndicatorLayout.NONE)) ||
                     (loop && layout != SwiperLayout.DEFAULT)),
-            'Only support `PageIndicatorLayout.SCALE` and `PageIndicatorLayout.COLOR`when layout==SwiperLayout.DEFAULT in loop mode'),
-        super(key: key);
+            'Only support `PageIndicatorLayout.SCALE` and `PageIndicatorLayout.COLOR`when layout==SwiperLayout.DEFAULT in loop mode');
 
   factory Swiper.children({
     required List<Widget> children,
@@ -690,7 +689,6 @@ class _SwiperState extends _SwiperTimerMixin {
 
 abstract class _SubSwiper extends StatefulWidget {
   const _SubSwiper({
-    Key? key,
     required this.loop,
     this.itemHeight,
     this.itemWidth,
@@ -703,7 +701,7 @@ abstract class _SubSwiper extends StatefulWidget {
     this.scrollDirection = Axis.horizontal,
     this.axisDirection = AxisDirection.left,
     this.onIndexChanged,
-  }) : super(key: key);
+  });
 
   final IndexedWidgetBuilder? itemBuilder;
   final int itemCount;
@@ -733,32 +731,18 @@ abstract class _SubSwiper extends StatefulWidget {
 
 class _TinderSwiper extends _SubSwiper {
   const _TinderSwiper({
-    Key? key,
-    required Curve curve,
-    int? duration,
-    required SwiperController controller,
-    ValueChanged<int>? onIndexChanged,
-    double? itemHeight,
-    double? itemWidth,
-    IndexedWidgetBuilder? itemBuilder,
-    int? index,
-    required bool loop,
-    required int itemCount,
-    Axis? scrollDirection,
-  })  : assert(itemWidth != null && itemHeight != null),
-        super(
-            loop: loop,
-            key: key,
-            itemWidth: itemWidth,
-            itemHeight: itemHeight,
-            itemBuilder: itemBuilder,
-            curve: curve,
-            duration: duration,
-            controller: controller,
-            index: index,
-            onIndexChanged: onIndexChanged,
-            itemCount: itemCount,
-            scrollDirection: scrollDirection);
+    required super.curve,
+    super.duration,
+    required super.controller,
+    super.onIndexChanged,
+    super.itemHeight,
+    super.itemWidth,
+    super.itemBuilder,
+    super.index,
+    required super.loop,
+    required super.itemCount,
+    super.scrollDirection = null,
+  })  : assert(itemWidth != null && itemHeight != null);
 
   @override
   State<StatefulWidget> createState() {
@@ -768,34 +752,19 @@ class _TinderSwiper extends _SubSwiper {
 
 class _StackSwiper extends _SubSwiper {
   const _StackSwiper({
-    Key? key,
-    required Curve curve,
-    int? duration,
-    required SwiperController controller,
-    ValueChanged<int>? onIndexChanged,
-    double? itemHeight,
-    double? itemWidth,
-    IndexedWidgetBuilder? itemBuilder,
-    int? index,
-    required bool loop,
-    required int itemCount,
-    Axis? scrollDirection,
-    AxisDirection? axisDirection,
-  }) : super(
-          loop: loop,
-          key: key,
-          itemWidth: itemWidth,
-          itemHeight: itemHeight,
-          itemBuilder: itemBuilder,
-          curve: curve,
-          duration: duration,
-          controller: controller,
-          index: index,
-          onIndexChanged: onIndexChanged,
-          itemCount: itemCount,
-          scrollDirection: scrollDirection,
-          axisDirection: axisDirection,
-        );
+    required super.curve,
+    super.duration,
+    required super.controller,
+    super.onIndexChanged,
+    super.itemHeight,
+    super.itemWidth,
+    super.itemBuilder,
+    super.index,
+    required super.loop,
+    required super.itemCount,
+    super.scrollDirection = null,
+    super.axisDirection = null,
+  });
 
   @override
   State<StatefulWidget> createState() => _StackViewState();
@@ -980,8 +949,8 @@ class ScaleAndFadeTransformer extends PageTransformer {
     final position = info.position;
     var c = child;
     if (_scale != null) {
-      final scaleFactor = (1 - position!.abs()) * (1 - _scale!);
-      final scale = _scale! + scaleFactor;
+      final scaleFactor = (1 - position!.abs()) * (1 - _scale);
+      final scale = _scale + scaleFactor;
 
       c = Transform.scale(
         scale: scale,
@@ -990,8 +959,8 @@ class ScaleAndFadeTransformer extends PageTransformer {
     }
 
     if (_fade != null) {
-      final fadeFactor = (1 - position!.abs()) * (1 - _fade!);
-      final opacity = _fade! + fadeFactor;
+      final fadeFactor = (1 - position!.abs()) * (1 - _fade);
+      final opacity = _fade + fadeFactor;
       c = Opacity(
         opacity: opacity,
         child: c,
